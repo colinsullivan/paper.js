@@ -51,3 +51,19 @@ test('group.bounds when group contains empty group', function() {
 	group.addChild(new Group());
 	compareRectangles(group.bounds, { x: 75, y: 75, width: 100, height: 100 }, 'group.bounds with empty group');
 });
+
+test('group.bounds when adding a circle', function () {
+  var circleGroup = new Group();
+  var circle = new Path.Circle(new Point(200, 200), 100);
+  circleGroup.addChild(circle);
+  compareObjects("circleGroup", ["x", "y", "width", "height"], circleGroup.bounds, { x: 100, y: 100, width: 200, height: 200 }, false);
+});
+
+test('group.bounds when changing position of group', function () {
+  var circleGroup = new Group();
+  var circle = new Path.Circle(new Point(0, 0), 100);
+  circleGroup.setPosition(new Point(100, 100));
+  circleGroup.addChild(circle);
+  compareObjects("circleGroup", ["x", "y", "width", "height"], circleGroup.bounds, { x: 100, y: 100, width: 200, height: 200 }, false);
+});
+
